@@ -1,6 +1,7 @@
 
 plugins {
     id("org.jetbrains.kotlin.jvm")
+    id("maven-publish")
 }
 
 kotlin {
@@ -13,4 +14,13 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            from(components["java"])
+            artifactId = "review-core"
+        }
+    }
 }
